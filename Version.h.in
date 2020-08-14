@@ -1,0 +1,40 @@
+#pragma once
+
+@_AZURE_KINECT_SDK_@#define OPENARK_AZURE_KINECT_ENABLED
+@_FREENECT2_@#define OPENARK_FREENECT2_ENABLED
+#define OPENARK_PREFERRED_CAMERA @_PREFERRED_CAMERA_@
+
+#define OPENARK_VERSION_MAJOR @OpenARK_VERSION_MAJOR@
+#define OPENARK_VERSION_MINOR @OpenARK_VERSION_MINOR@
+#define OPENARK_VERSION_PATCH @OpenARK_VERSION_PATCH@
+#define ARK_STRINGIFY2(X) #X
+#define ARK_STRINGIFY(X) ARK_STRINGIFY2(X)
+
+// Constants
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
+// Necessary for typedefs
+#include <opencv2/core/types.hpp>
+
+    // OpenARK namespace
+    namespace ark {
+    // OpenARK version number (modify in CMakeLists.txt)
+    static const char* VERSION =
+        ARK_STRINGIFY(OPENARK_VERSION_MAJOR) "." ARK_STRINGIFY(
+            OPENARK_VERSION_MINOR) "." ARK_STRINGIFY(OPENARK_VERSION_PATCH);
+
+    // Typedefs for common types
+    typedef cv::Point Point;
+    typedef cv::Point2i Point2i;
+    typedef cv::Point2f Point2f;
+    typedef cv::Point2d Point2d;
+    typedef cv::Vec2f Vec2f;
+    typedef cv::Vec2d Vec2d;
+    typedef cv::Vec2i Vec2i;
+    typedef cv::Vec3b Vec3b;
+    typedef cv::Vec3f Vec3f;
+    typedef cv::Vec3d Vec3d;
+    typedef cv::Vec3i Vec3i;
+}
