@@ -17,7 +17,6 @@ set( CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" )
 
 find_package( Threads REQUIRED )
 
-find_package( ZLIB REQUIRED )
 find_package( Eigen3 REQUIRED )
 set( Boost_USE_STATIC_LIBS ON )
 set( Boost_USE_STATIC ON )
@@ -42,7 +41,6 @@ set(
   ${CMAKE_THREAD_LIBS_INIT}
   ${OpenCV_LIBRARIES}
   ${Boost_LIBRARIES}
-  ZLIB::ZLIB
   Eigen3::Eigen
 )
 
