@@ -1,4 +1,4 @@
-/** COLMAP RGB-D point cloud registration wrapper;
+/** COLMAP RGB-D camera pose estimation wrapper;
  *  expects 'colmap' executable (or --colmap value) to be in PATH
  *  (c) Alex Yu 2019-20, Apache License 2.0 */
 #include <fstream>
@@ -254,7 +254,7 @@ int main(int argc, char** argv) {
     bool rerun, noRefineIntrin;
     po::options_description desc("Option arguments");
     po::options_description descPositional(
-        "COLMAP wrapper for RGB-D point cloud registration, with automatic "
+        "COLMAP wrapper for RGB-D camera pose estimation, with automatic "
         "scale "
         "correction\n(c) Alex Yu 2020\n"
         "\nPositional arguments");

@@ -1,4 +1,4 @@
-/** RGB-D point cloud registration visualizer.
+/** RGB-D camera pose estimation visualizer.
  *  Use this after e.g. rgbdpose-colmap: rgbdpose-viewer <directory>
  *  (c) Alex Yu 2019-20, Apache License 2.0 */
 #include <string>
@@ -55,7 +55,7 @@ int main(int argc, char** argv) {
     // **** BEGIN ARG PARSING ****
     po::options_description desc("Option arguments");
     po::options_description descPositional(
-        "RGB-D point cloud registration visualization for rgbdreg-colmap/etc. "
+        "RGB-D camera pose estimation visualization for rgbdreg-colmap/etc. "
         "(c) Alex Yu 2020\n\nPositional "
         "arguments");
     po::options_description descCombined("");

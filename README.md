@@ -12,7 +12,7 @@ A general data capturing program is included.
              Requires `colmap` to be in system PATH.
     - `rgbdreg-orbslam2`: registration method based on ORB_SLAM2. This method actually uses
         RGB-D information of each frame and produces correctly scaled camera poses.
-- `rgbdreg-viewer`: Visualize point cloud registration. After running one of the above, use `rgbdreg-viewer <data-folder>` to ensure result is good.
+- `rgbdreg-viewer`: Visualize camera pose estimation. After running one of the above, use `rgbdreg-viewer <data-folder>` to ensure result is good.
 
 ![Screenshot of registered point cloud](https://github.com/sxyu/rgbdrec/blob/master/readme-img/registered.png?raw=true)
 

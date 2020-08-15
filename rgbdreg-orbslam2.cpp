@@ -1,4 +1,4 @@
-/** ORB_SLAM2 RGB-D point cloud registration wrapper;
+/** ORB_SLAM2 RGB-D camera pose estimation wrapper;
  *  (c) Alex Yu 2019-20, Apache License 2.0 */
 #include <iostream>
 #include <iomanip>
@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
     // **** BEGIN ARG PARSING ****
     po::options_description desc("Option arguments");
     po::options_description descPositional(
-        "ORB_SLAM2 wrapper for RGB-D point cloud registration\n(c) Alex Yu "
+        "ORB_SLAM2 wrapper for RGB-D camera pose estimation\n(c) Alex Yu "
         "2020\n"
         "\nPositional arguments");
     po::options_description descCombined("");
