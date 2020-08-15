@@ -62,29 +62,15 @@ void lower(std::string& s) {
 }
 
 std::string resolveRootPath(const std::string& root_path) {
-    static const std::string TEST_PATH = "data/avatar-model/extract.py";
+    static const std::string TEST_PATH = "data/ORBvoc.bin";
     static const int MAX_LEVELS = 3;
     static std::string rootDir = "\n";
     if (rootDir == "\n") {
         rootDir.clear();
-        const char* env = std::getenv("OPENARK_DIR");
+        const char* env = std::getenv("RGBDREC_DIR");
         if (env) {
             // use environmental variable if exists and works
             rootDir = env;
-
-            // auto append slash
-            if (!rootDir.empty() && rootDir.back() != '/' &&
-                rootDir.back() != '\\')
-                rootDir.push_back('/');
-
-            std::ifstream test_ifs(rootDir + TEST_PATH);
-            if (!test_ifs) rootDir.clear();
-        }
-
-        const char* env2 = std::getenv("SMPLSYNTH_DIR");
-        if (env2) {
-            // use environmental variable if exists and works
-            rootDir = env2;
 
             // auto append slash
             if (!rootDir.empty() && rootDir.back() != '/' &&
@@ -244,6 +230,21 @@ void writeDepth(const std::string& image_path, cv::Mat& depth_map) {
 
         ofsd.close();
     }
+}
+
+std::vector<std::string> listDir(const std::string& path,
+                                 const std::string& ext, bool sort) {
+    using boost::filesystem::directory_iterator;
+    std::vector<std::string> res;
+    for (directory_iterator itr(path); itr != directory_iterator(); ++itr) {
+        if (is_regular_file(itr->path())) {
+            if (ext == "" || itr->path().extension().string() == ext) {
+                res.push_back(itr->path().string());
+            }
+        }
+    }
+    if (sort) std::sort(res.begin(), res.end());
+    return res;
 }
 }  // namespace util
 

@@ -213,6 +213,9 @@ inline void invHomogeneous(Eigen::Ref<Eigen::Matrix<T, 3, 4, Option>> a) {
     a.template rightCols<1>() =
         -a.template leftCols<3>() * a.template rightCols<1>();
 }
+
+std::vector<std::string> listDir(const std::string& path,
+                                 const std::string& ext = "", bool sort = true);
 }  // namespace util
 
 // Randomization utilities
