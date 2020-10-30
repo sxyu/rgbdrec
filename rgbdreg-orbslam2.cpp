@@ -49,12 +49,12 @@ int main(int argc, char** argv) {
         "thdepth", po::value<double>(&thDepth)->default_value(1e9),
         "ThDepth parameter in ORB_SLAM2 'close/far threshold'. No idea what it "
         "does")("orb-nfeatures,F",
-                po::value<int>(&orbNFeatures)->default_value(18000),
+                po::value<int>(&orbNFeatures)->default_value(1000),
                 "number of ORB features per image")(
         "orb-scalefactor",
         po::value<double>(&orbScaleFactor)->default_value(1.2),
         "scale factor between levels in scale pyramid of ORB extraction")(
-        "orb-nlevels", po::value<int>(&orbNLevels)->default_value(20),
+        "orb-nlevels", po::value<int>(&orbNLevels)->default_value(8),
         "number of levels in scale pyramid of ORB extraction")(
         "orb-inithfast", po::value<int>(&orbIniThFAST)->default_value(20),
         "ORB extractor FAST threshold")(
@@ -131,6 +131,7 @@ int main(int argc, char** argv) {
         uint64_t timestampNano, timestampNanoInit;
         while (timestampsIfs) {
             timestampsIfs >> timestampNano;
+            // if (!(timestampsIfs >> timestampNano)) break;
             if (timestamps.empty()) timestampNanoInit = timestampNano;
             timestamps.push_back((double)(timestampNano - timestampNanoInit) /
                                  1e9);
@@ -139,7 +140,7 @@ int main(int argc, char** argv) {
 
     if (images.size() != depths.size()) {
         std::cerr << "Error: Found " << images.size() << " color images "
-                  << depths.size() << " depth images, and "
+                  << depths.size() << " depth images, and " << timestamps.size()
                   << " timestamps. These must match.\n";
         return 1;
     }

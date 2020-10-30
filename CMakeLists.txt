@@ -72,6 +72,13 @@ else()
     message( STATUS "Freenect2 disabled, configure with -DWITH_FREENECT2=ON to enable" )
 endif ()
 
+set(SOURCES
+    ${SRC_DIR}/Calibration.cpp
+    ${SRC_DIR}/DepthCamera.cpp
+    ${SRC_DIR}/Util.cpp
+)
+file(GLOB_RECURSE HEADERS ${INCLUDE_DIR}/*.h)
+
 #  Set up configs
 set (FOUND_CAMERA_LIB FALSE)
 if( NOT k4a_FOUND )
@@ -107,9 +114,6 @@ endif()
 
 configure_file( Version.h.in "${PROJECT_BINARY_DIR}/include/Version.h" )
 
-file(GLOB_RECURSE SOURCES ${SRC_DIR}/*.cpp)
-file(GLOB_RECURSE HEADERS ${INCLUDE_DIR}/*.h)
-
 add_library(librgbdrec ${SOURCES})
 target_include_directories(
     librgbdrec PUBLIC
@@ -123,9 +127,11 @@ set_target_properties( librgbdrec PROPERTIES OUTPUT_NAME "rgbdrec" )
 target_link_libraries( librgbdrec ${DEPENDENCIES} )
 install(TARGETS librgbdrec DESTINATION lib)
 
-add_executable(rgbdrec rgbdrec.cpp)
-target_link_libraries( rgbdrec librgbdrec )
-install(TARGETS rgbdrec DESTINATION bin)
+if (freenect2_FOUND OR k4a_FOUND)
+    add_executable(rgbdrec rgbdrec.cpp)
+    target_link_libraries( rgbdrec librgbdrec )
+    install(TARGETS rgbdrec DESTINATION bin)
+endif()
 
 add_executable(rgbdreg-colmap rgbdreg-colmap.cpp)
 target_link_libraries( rgbdreg-colmap librgbdrec )
